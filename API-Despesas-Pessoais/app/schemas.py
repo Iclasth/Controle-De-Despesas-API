@@ -19,8 +19,11 @@ class DespesaBase(BaseModel):
     
     @validator("tipo_despesa")
     def check_tipo_despesa(cls, value):
+        if value is None:
+            return value
         if value not in {"Fixa", "Variável"}:
             raise ValueError("O tipo de despesa deve ser 'fixa' ou 'variavel'")
+        
         return value
     
 class DespesaCreate(DespesaBase):
