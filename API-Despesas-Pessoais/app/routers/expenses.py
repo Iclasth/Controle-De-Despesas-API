@@ -40,6 +40,6 @@ def delete_despesa(id_despesa: int, db: Session = Depends(get_db)):
 
 @router.get("/relatorio/{ano}/{mes}")
 def relatorio_despesas(ano: int, mes: int, db: Session = Depends(get_db)):
-    despesas = db.query(repository.models.DespesaModel).all()
+    despesas = db.query(repository.models.Despesa).all()
     relatorio = relatorio_service.gerar_relatorio(db, ano, mes)
     return {"ano": ano, "mes": mes, "relatorio": relatorio}

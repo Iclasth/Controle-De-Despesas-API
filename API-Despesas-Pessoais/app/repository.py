@@ -3,7 +3,7 @@ from app import models, schemas
 from datetime import date
 
 def criar_despesa(db: Session, despesa: schemas.DespesaCreate):
-    db_objeto = models.DespesaModel(
+    db_objeto = models.Despesa(
         categoria= despesa.categoria,
         valor= despesa.valor,
         data_despesa= despesa.data_despesa,
@@ -16,10 +16,10 @@ def criar_despesa(db: Session, despesa: schemas.DespesaCreate):
     return db_objeto
 
 def resgatar_despesa(db: Session, id_despesa: int):
-    return db.query(models.DespesaModel).filter(models.DespesaModel.id == id_despesa).first()
+    return db.query(models.Despesa).filter(models.Despesa.id == id_despesa).first()
 
 def listar_despesas(db: Session, skip: int = 0, limit: int = 100 ):
-    return db.query(models.DespesaModel).offset(skip).limit(limit).all()
+    return db.query(models.Despesa).offset(skip).limit(limit).all()
 
 def atualizar_despesa(db: Session, id_despesa: int, updates: dict):
     objeto_despesa = resgatar_despesa(db, id_despesa)

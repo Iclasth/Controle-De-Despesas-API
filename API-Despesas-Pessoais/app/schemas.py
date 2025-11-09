@@ -39,5 +39,6 @@ class DespesaUpdate(BaseModel):
 class DespesaOut(DespesaBase):
     id_despesa: int
 
-    class Config:
-        orm_mode = True
+    model_config = {
+        "from_attributes": True
+    }

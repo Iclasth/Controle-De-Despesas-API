@@ -1,11 +1,11 @@
 from abc import ABC, abstractmethod
 from datetime import date
 from typing import List, Dict
-from app.models import DespesaModel
+from app.models import Despesa
 
 class RegistroFinanceiro(ABC):
     @abstractmethod
-    def gerar_relatorio_mensal(self, despesas: List[DespesaModel], mes:int, ano: int) -> Dict[str, float]:
+    def gerar_relatorio_mensal(self, despesas: List[Despesa], mes:int, ano: int) -> Dict[str, float]:
         pass
 
 class Despesa:
@@ -28,7 +28,7 @@ class Despesavariavel(Despesa):
         return self.valor  
 
 class RegistroDespesa(RegistroFinanceiro):
-    def gerar_relatorio_mensal(self, despesas: List[DespesaModel], mes: int, ano: int):
+    def gerar_relatorio_mensal(self, despesas: List[Despesa], mes: int, ano: int):
         relatorio= {}
         for d in despesas:
             if d.data.month == mes and d.data.year == ano:
