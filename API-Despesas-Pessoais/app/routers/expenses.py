@@ -10,7 +10,8 @@ relatorio_service = RegistroDespesa()
 
 @router.post("/", response_model=schemas.DespesaOut, status_code=status.HTTP_201_CREATED)
 def create_despesa(despesa: schemas.DespesaCreate, db: Session = Depends(get_db)):
-    return repository.listar_despesas(db, skip=0, limit=100)
+    nova_despesa = repository.criar_despesa(db, despesa)
+    return nova_despesa
 
 @router.get("/{id_despesa}", response_model=schemas.DespesaOut)
 def get_despesa(id_despesa: int, db: Session = Depends(get_db)):

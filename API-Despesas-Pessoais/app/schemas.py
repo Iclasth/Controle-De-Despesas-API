@@ -1,8 +1,8 @@
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field, field_validator
 from datetime import date
 from typing import Optional
 
-CATEGORIAS_PERMITIDAS = {"Alimentação, Transporte, Lazer, Saúde, Moradia, Outros"}
+CATEGORIAS_PERMITIDAS = {"Alimentação", "Transporte", "Lazer", "Saúde", "Moradia", "Outros"}
 
 class DespesaBase(BaseModel):
     categoria: str
@@ -11,13 +11,13 @@ class DespesaBase(BaseModel):
     desc_despesa: Optional[str] = None
     tipo_despesa: Optional[str] = "Variável"
 
-    @validator("categoria")
+    @field_validator("categoria")
     def check_categoria(cls, value):
         if value not in CATEGORIAS_PERMITIDAS:
             raise ValueError(f"A categoria deve estar entre as categorias seguintes: {sorted(CATEGORIAS_PERMITIDAS)}")
         return value
     
-    @validator("tipo_despesa")
+    @field_validator("tipo_despesa")
     def check_tipo_despesa(cls, value):
         if value is None:
             return value

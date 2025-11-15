@@ -7,7 +7,7 @@ def criar_despesa(db: Session, despesa: schemas.DespesaCreate):
         categoria= despesa.categoria,
         valor= despesa.valor,
         data_despesa= despesa.data_despesa,
-        descricao_despesa= despesa.desc_despesa,
+        desc_despesa= despesa.desc_despesa,
         tipo_despesa= despesa.tipo_despesa
     )
     db.add(db_objeto)
@@ -16,7 +16,7 @@ def criar_despesa(db: Session, despesa: schemas.DespesaCreate):
     return db_objeto
 
 def resgatar_despesa(db: Session, id_despesa: int):
-    return db.query(models.Despesa).filter(models.Despesa.id == id_despesa).first()
+    return db.query(models.Despesa).filter(models.Despesa.id_despesa == id_despesa).first()
 
 def listar_despesas(db: Session, skip: int = 0, limit: int = 100 ):
     return db.query(models.Despesa).offset(skip).limit(limit).all()

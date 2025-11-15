@@ -21,7 +21,7 @@ def calcular_valor_mensal(self) -> float:
 
 class Despesafixa(Despesa):
     def calcular_valor_mensal(self) -> float:
-        return self.valor
+        return self.valor 
     
 class Despesavariavel(Despesa):
     def calcular_valor_mensal(self) -> float:
@@ -36,3 +36,10 @@ class RegistroDespesa(RegistroFinanceiro):
                 relatorio[d.categoria] += d.valor
         return relatorio
         
+
+# def map_model_to_domain(model):
+#     if model.tipo_despesa == "Fixa":
+#         return Despesafixa
+#     if model.tipo_despesa == "Variável":
+#         return Despesavariavel
+    
