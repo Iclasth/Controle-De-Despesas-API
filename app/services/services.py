@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from datetime import date
 from typing import List, Dict
-from app.models import Despesa
+from app.db.models import Despesa
 
 class RegistroFinanceiro(ABC):
     @abstractmethod

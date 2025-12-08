@@ -1,14 +1,16 @@
+from typing import List
 from sqlalchemy.orm import Session
-from app import models, schemas
+from app.db import models
+from app.schemas import schemas
 from datetime import date
 
 def criar_despesa(db: Session, despesa: schemas.DespesaCreate):
     db_objeto = models.Despesa(
-        categoria= despesa.categoria,
-        valor= despesa.valor,
-        data_despesa= despesa.data_despesa,
-        desc_despesa= despesa.desc_despesa,
-        tipo_despesa= despesa.tipo_despesa
+        categoria=despesa.categoria,
+        valor=despesa.valor,
+        data_despesa=despesa.data_despesa,
+        desc_despesa=despesa.desc_despesa,
+        tipo_despesa=despesa.tipo_despesa
     )
     db.add(db_objeto)
     db.commit()
@@ -18,7 +20,7 @@ def criar_despesa(db: Session, despesa: schemas.DespesaCreate):
 def resgatar_despesa(db: Session, id_despesa: int):
     return db.query(models.Despesa).filter(models.Despesa.id_despesa == id_despesa).first()
 
-def listar_despesas(db: Session, skip: int = 0, limit: int = 100 ):
+def listar_despesas(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.Despesa).offset(skip).limit(limit).all()
 
 def atualizar_despesa(db: Session, id_despesa: int, updates: dict):
@@ -39,6 +41,5 @@ def deletar_despesa(db: Session, id_despesa: int):
     db.commit()
     return True
 
-
-
-
+def buscar_despesas_por_periodo(db: Session, data_inicio: date, data_fim: date) -> List[models.Despesa]:
+    return db.query(models.Despesa).filter(models.Despesa.data_despesa >= data_inicio, models.Despesa.data_despesa <= data_fim).all()

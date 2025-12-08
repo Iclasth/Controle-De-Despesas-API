@@ -23,3 +23,16 @@ typing_extensions==4.15.0
 uvicorn==0.38.0
 watchfiles==1.1.1
 websockets==15.0.1
+
+
+# uvicorn app.main:app --reload
+
+#  {
+#   "desc_despesa": "Aluguel do apartamento",
+#   "valor": 1500.00,
+#   "data_despesa": "2025-12-01",
+#   "categoria": "Moradia",
+#   "tipo_despesa": "Fixa"
+# }
+
+
